@@ -46,14 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="BarcodeDemo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="BarcodeDemo.Designer.cs">
+      <DependentUpon>BarcodeDemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryPageControl.Designer.cs">
+      <DependentUpon>InventoryPageControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BarcodeDemo.resx">
+      <DependentUpon>BarcodeDemo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryPageControl.resx">
+      <DependentUpon>InventoryPageControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BarcodeScannerLibrary\BarcodeScannerLibrary.csproj">
+      <Project>{de99f9e6-7c70-4740-3d87-650c63df371e}</Project>
+      <Name>BarcodeScannerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

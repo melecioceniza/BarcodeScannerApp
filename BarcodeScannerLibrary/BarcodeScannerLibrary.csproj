@@ -1,7 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!-- Target ONLY the stable old version -->
+		<TargetFramework>net48</TargetFramework>
 
-  <PropertyGroup>
+		<!-- Enable Windows Forms support so the library understands TabControls -->
+		<UseWindowsForms>true</UseWindowsForms>
+
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System.Management" />
+	</ItemGroup>
+	
+	
+  <!--<PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="10.0.9" />
+    <PackageReference Include="System.Management" Version="10.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Windows.Forms.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
 
 </Project>

@@ -1,8 +1,13 @@
 ﻿# BarcodeScannerLibrary
-USB Barcode Scanner  Library using com port
+USB Barcode Scanner  Library using com port, targeting .NET Framework 4.7.2 or later.
+I build this library to provide a simple and efficient way to integrate barcode scanning 
+functionality into applications. It supports various barcode formats and offers real-time 
+scanning capabilities. I use this library in my own projects and I hope it will be useful 
+for others as well. This library is designed to be easy to use and integrate, making it 
+suitable for developers of all skill levels.
 
 ## 🚀 Key Features
-- **Easy Integration**: Quickly integrate barcode scanning functionality into your applications.
+- **Easy Integration**: Quickly integrate barcode scanning functionality into your applications in any brand of barcode scanner.
 - **Cross-Platform Support**: Compatible with Windows, macOS, and Linux.
 - **Multiple Barcode Formats**: Supports various barcode formats including QR codes, Code 128,
 - Code 39, EAN-13, and more.
