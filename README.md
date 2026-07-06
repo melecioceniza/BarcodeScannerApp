@@ -6,6 +6,8 @@ scanning capabilities. I use this library in my own projects and I hope it will 
 for others as well. This library is designed to be easy to use and integrate, making it 
 suitable for developers of all skill levels.
 
+![Screenshot](./BarcodeScannerDemo/images/Screenshot.png)
+
 ## 🚀 Key Features
 - **Easy Integration**: Quickly integrate barcode scanning functionality into your applications in any brand of barcode scanner.
 - **Cross-Platform Support**: Compatible with Windows, macOS, and Linux.
