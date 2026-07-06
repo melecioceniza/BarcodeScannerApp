@@ -44,5 +44,63 @@ The library provides a simple and intuitive user interface for configuring and m
 - **Threading**: Uses background threads to manage scanner operations without blocking the main application thread
 - - **Data Processing**: Processes scanned barcode data and provides it to the application in a structured format.
 	- Validate and parse the scanned data to ensure accuracy and consistency.
-	
+
+## 📝 Usage Instructions
+
+In your main form, you can use the library as follows:
+  
+ 
+    using BarcodeScannerLibrary; // 1. Import your custom library namespace
+
+    public partial class MainForm : Form
+    {
+        // The single engine instance handling the entire background ecosystem
+        private BarcodeScannerEngine _scannerEngine;
+
+        private System.Windows.Forms.Timer _statusResetTimer;
+        private System.Windows.Forms.Timer _blinkTimer;
+        private bool _isBlinkState = false;
+
+        public MainForm()
+        {
+            InitializeComponent();
+            InitializeStatusTimers();
+
+            // Wire up the engine by passing your TabControl UI element
+            // Initialize the library engine by passing your TabControl UI element
+            _scannerEngine = new BarcodeScannerEngine(tabControl1);
+            _scannerEngine.StatusChanged += Engine_StatusChanged;
+            _scannerEngine.DeviceLost += Engine_DeviceLost;
+            _scannerEngine.DeviceRecovered += Engine_DeviceRecovered;
+
+            // Fire it up!
+            _scannerEngine.Start();
+        }
+    }
+
+In your UserControl, you can use the library as follows:
+
+        using BarcodeScannerLibrary; // Import your custom library namespace
+
+        public partial class BarcodeScannerControl : UserControl, IScannerReceiver
+        {
+            private BarcodeScannerEngine _scannerEngine;
+
+            public BarcodeScannerControl()
+            {
+                InitializeComponent();
+
+            }
+            public void ProcessScanData(string barcode)
+            {
+                txtBarcodeDisplay.Text = barcode;
+                ExecuteProductSearch(barcode);
+            }
+            private void ExecuteProductSearch(string barcode)
+            {
+                // Your search or database query logic goes here...
+            }
+
+        }
+
 
