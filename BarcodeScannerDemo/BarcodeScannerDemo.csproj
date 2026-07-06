@@ -58,6 +58,7 @@
     <Compile Include="InventoryPageControl.Designer.cs">
       <DependentUpon>InventoryPageControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainFormScannerBinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BarcodeDemo.resx">
@@ -93,6 +94,10 @@
       <Project>{de99f9e6-7c70-4740-3d87-650c63df371e}</Project>
       <Name>BarcodeScannerLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="images\Screenshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
