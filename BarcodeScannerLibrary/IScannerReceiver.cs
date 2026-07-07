@@ -4,6 +4,13 @@ namespace BarcodeScannerLibrary
 {
     public interface IScannerReceiver
     {
-        void ProcessScanData(string scanData);
+        // Handles both automatic hardware scans and manual entry routing
+        void ProcessScanData(string barcode);
+
+        // Forces the cursor to blink inside the manual textbox layout
+        void FocusManualInputText();
+
+        // Connects the page instance back to your central library engine
+        BarcodeScannerEngine ScannerEngine { get; set; }
     }
 }

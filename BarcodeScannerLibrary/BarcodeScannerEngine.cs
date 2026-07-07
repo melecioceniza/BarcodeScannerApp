@@ -38,8 +38,11 @@ namespace BarcodeScannerLibrary
                 string scannerPort = AutoDetectScannerPort();
                 if (string.IsNullOrEmpty(scannerPort))
                 {
-                    RaiseStatusChanged("Scanner Offline: Device not found", Color.MistyRose, Color.DarkRed);
-                    return false;
+                    //RaiseStatusChanged("Scanner Offline: Device not found", Color.MistyRose, Color.DarkRed);
+                    //return false;
+                    // MODIFIED: Do not return false! Let the app stay green in Keyboard Wedge fallback mode
+                    RaiseStatusChanged("Scanner Ready (USB Keyboard Mode)", Color.FromKnownColor(KnownColor.Control), Color.Black);
+                    return true;
                 }
 
                 _detectedPortName = scannerPort;
