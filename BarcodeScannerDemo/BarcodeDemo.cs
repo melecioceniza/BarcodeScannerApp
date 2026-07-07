@@ -1,7 +1,7 @@
-﻿using System;
+﻿using BarcodeScannerLibrary; // Import your custom library namespace
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using BarcodeScannerLibrary; // Import your custom library namespace
 
 namespace BarcodeScannerDemo
 {
@@ -37,9 +37,63 @@ namespace BarcodeScannerDemo
 
             // Kickstart the automated scanner detection & connection loop
             _scannerEngine.Start();
+
+            // 1. ADD THIS LINE: Automatically trigger focus as soon as the app window opens on screen
+            this.Shown += MainForm_Shown;
+        }
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            // 2. Wrap the focus routine in a BeginInvoke block.
+            // This forces Windows to wait until all startup components are drawn before placing the cursor.
+            this.BeginInvoke(new Action(() =>
+            {
+                // If you don't have a default tab open on startup, create one first:
+                if (tabControl1.TabPages.Count == 0)
+                {
+                    CreateDefaultStartupTab();
+                }
+                else
+                {
+                    // Otherwise, focus the existing active tab immediately
+                    FocusFirstTabOnStartup();
+                }
+            }));
+        }
+        private void CreateDefaultStartupTab()
+        {
+            TabPage newTabPage = new TabPage();
+            newTabPage.Text = "Inventory Sheet 1";
+
+            // Create your default page form layout
+            InventoryPageControl pageForm = new InventoryPageControl();
+            //pageForm.TopLevel = false;
+            //pageForm.FormBorderStyle = FormBorderStyle.None;
+            pageForm.Dock = DockStyle.Fill;
+            pageForm.ScannerEngine = this._scannerEngine;
+
+            newTabPage.Controls.Add(pageForm);
+            pageForm.Show();
+
+            tabControl1.TabPages.Add(newTabPage);
+            tabControl1.SelectedTab = newTabPage;
+
+            // Immediately focus the newly opened text box
+            pageForm.FocusManualInputText();
         }
 
+        private void FocusFirstTabOnStartup()
+        {
+            if (tabControl1.SelectedTab == null) return;
 
+            foreach (Control control in tabControl1.SelectedTab.Controls)
+            {
+                if (control is InventoryPageControl activePage)
+                {
+                    activePage.FocusManualInputText();
+                    break;
+                }
+            }
+        }
         // Inject the engine reference when generating tabs so manual entries function
         private void btnAddTab_Click(object sender, EventArgs e)
         {

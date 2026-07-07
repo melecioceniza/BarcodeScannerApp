@@ -27,6 +27,9 @@ namespace BarcodeScannerDemo
             _engine.DeviceLost += HandleDeviceLost;
             _engine.DeviceRecovered += HandleDeviceRecovered;
 
+            // ADD THIS LINE: Listen for whenever the user changes sheets
+            _form.MainTabControl.SelectedIndexChanged += (s, e) => FocusActiveTabManualInput();
+
             // Automatically run your timer setup routines internally
             InitializeStatusTimers();
         }
@@ -39,7 +42,20 @@ namespace BarcodeScannerDemo
                 _statusResetTimer.Stop();
                 _statusLabel.BackColor = SystemColors.Control;
                 _statusLabel.ForeColor = SystemColors.ControlText;
-                _statusLabel.Text = $"Scanner Ready ({_engine.DetectedPortName})";
+
+
+                //_statusLabel.Text = $"Scanner Ready ({_engine.DetectedPortName})";
+
+                // Dynamic text fallback based on connection type
+                if (_engine.IsScannerOnline)
+                {
+                    _statusLabel.Text = $"Scanner Ready (COM Port Mode: {_engine.DetectedPortName})";
+                }
+                else
+                {
+                    _statusLabel.Text = "Scanner Ready (USB Keyboard Mode)";
+                }
+
             };
 
             _blinkTimer = new Timer { Interval = 500 };
